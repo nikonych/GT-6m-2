@@ -55,7 +55,16 @@ class MainFragment : Fragment(), TaskChangeListener {
         val listActive = viewModel.getActiveTasks()
         val listPassive = viewModel.getPassiveTasks()
 
+        if (listPassive.size + listActive.size == 0) {
 
+            binding.tvShowActiveTasks.visibility = View.GONE
+            binding.tvShowPassiveTasks.visibility = View.GONE
+            binding.tvComplete.visibility = View.GONE
+            binding.imgEmpty.visibility = View.VISIBLE
+            binding.imgEmpty.setAnimationFromUrl("https://assets2.lottiefiles.com/private_files/lf30_e3pteeho.json")
+        } else {
+            binding.imgEmpty.visibility = View.GONE
+        }
 
 
         if (listPassive.size + listActive.size <= 6) {
@@ -198,6 +207,19 @@ class MainFragment : Fragment(), TaskChangeListener {
         val listActive = viewModel.getActiveTasks()
         val listPassive = viewModel.getPassiveTasks()
         with(binding) {
+            if (listPassive.size + listActive.size == 0) {
+
+                binding.tvShowActiveTasks.visibility = View.GONE
+                binding.tvShowPassiveTasks.visibility = View.GONE
+                binding.tvComplete.visibility = View.GONE
+                binding.imgEmpty.visibility = View.VISIBLE
+                binding.imgEmpty.setAnimationFromUrl("https://assets2.lottiefiles.com/private_files/lf30_e3pteeho.json")
+            } else {
+                binding.imgEmpty.visibility = View.GONE
+
+            }
+
+
             if (listPassive.size + listActive.size <= 6) {
                 activeAdapter.updateList(viewModel.getActiveTasks())
                 passiveAdapter.updateList(viewModel.getPassiveTasks())

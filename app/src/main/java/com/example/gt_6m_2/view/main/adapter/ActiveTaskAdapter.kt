@@ -48,7 +48,12 @@ class ActiveTaskAdapter(
     }
 
     fun deleteTask(position: Int){
-        list.removeAt(position)
+        try {
+
+            list.removeAt(position)
+        } catch (e: Exception) {
+
+        }
         notifyItemRemoved(position)
     }
 
