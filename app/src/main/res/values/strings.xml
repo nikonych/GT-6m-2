@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">GT-6m-2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="october_20_2022">October 20, 2022</string>
+    <string name="my_todo_list">ТУДУШКА</string>
+    <string name="completed">Completed</string>
+    <string name="add_new_task">Add New Task</string>
+    <string name="task_title">Task Title</string>
+    <string name="category">Category</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="notes">Notes</string>
+    <string name="save">Save</string>
+    <string name="study_lesson">Study lesson</string>
+    <string name="_4_00pm">4:00pm</string>
+    <string name="show_all_tasks">Show all tasks</string>
+    <string name="delete">Delete</string>
+    <string name="description">description</string>
+</resources>

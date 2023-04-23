@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#1B1B1D</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="primary">#4A3780</color>
+    <color name="gray">#F1F5F9</color>
+    <color name="task">#DBECF6</color>
+    <color name="task_tint">#194A66</color>
+    <color name="event">#E7E2F3</color>
+    <color name="goal">#FEF5D3</color>
+    <color name="goal_tint">#403100</color>
+    <color name="red">#D73441</color>
+
+</resources>
