@@ -35,7 +35,7 @@ class ActiveTaskAdapter(
     }
 
 
-    fun updateList(tasks: List<Task>) {
+    fun updateList(tasks: List<Task>,) {
         list.clear()
         list.addAll(tasks)
         notifyDataSetChanged()

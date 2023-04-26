@@ -10,6 +10,7 @@ import com.example.gt_6m_2.R
 import com.example.gt_6m_2.databinding.ItemTaskBinding
 import com.example.gt_6m_2.enums.TaskType
 import com.example.gt_6m_2.model.Task
+import com.example.gt_6m_2.view.allTasks.adapter.TaskAdapter
 import com.example.gt_6m_2.view.main.TaskChangeListener
 import com.example.gt_6m_2.viewmodel.TaskViewModel
 

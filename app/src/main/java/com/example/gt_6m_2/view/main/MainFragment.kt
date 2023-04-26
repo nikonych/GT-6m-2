@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.gt_6m_2.R
@@ -55,138 +56,143 @@ class MainFragment : Fragment(), TaskChangeListener {
         val listActive = viewModel.getActiveTasks()
         val listPassive = viewModel.getPassiveTasks()
 
-        if (listPassive.size + listActive.size == 0) {
+//        if (listPassive.size + listActive.size == 0) {
+//
+//            binding.tvShowActiveTasks.visibility = View.GONE
+//            binding.tvShowPassiveTasks.visibility = View.GONE
+//            binding.tvComplete.visibility = View.GONE
+//            binding.imgEmpty.visibility = View.VISIBLE
+//            binding.imgEmpty.setAnimationFromUrl("https://assets2.lottiefiles.com/private_files/lf30_e3pteeho.json")
+//        } else {
+//            binding.imgEmpty.visibility = View.GONE
+//        }
+//
+//
+//        if (listPassive.size + listActive.size <= 6) {
+//            activeAdapter =
+//                ActiveTaskAdapter(listActive.toMutableList(), viewModel, this, childFragmentManager)
+//            passiveAdapter = PassiveTaskAdapter(listPassive.toMutableList(), viewModel, this)
+//
+//            binding.tvShowActiveTasks.visibility = View.GONE
+//            binding.tvShowPassiveTasks.visibility = View.GONE
+//
+//            if (listPassive.isNotEmpty()) {
+//                binding.tvComplete.visibility = View.VISIBLE
+//            } else {
+//                binding.tvComplete.visibility = View.GONE
+//            }
+//        } else {
+//            if (listPassive.size == listActive.size) {
+//                activeAdapter =
+//                    ActiveTaskAdapter(
+//                        listActive.take(3).toMutableList(),
+//                        viewModel,
+//                        this,
+//                        childFragmentManager
+//                    )
+//                passiveAdapter =
+//                    PassiveTaskAdapter(listPassive.take(3).toMutableList(), viewModel, this)
+//
+//                binding.tvShowActiveTasks.visibility = View.VISIBLE
+//                binding.tvShowPassiveTasks.visibility = View.VISIBLE
+//            } else if (listPassive.size < 3) {
+//                activeAdapter = ActiveTaskAdapter(
+//                    viewModel.getActiveTasks().take(6 - listPassive.size).toMutableList(),
+//                    viewModel,
+//                    this, childFragmentManager
+//                )
+//                passiveAdapter = PassiveTaskAdapter(listPassive.toMutableList(), viewModel, this)
+//
+//                binding.tvShowPassiveTasks.visibility = View.GONE
+//                binding.tvShowActiveTasks.visibility = View.VISIBLE
+//
+//
+//                if (listPassive.isNotEmpty()) {
+//                    binding.tvComplete.visibility = View.VISIBLE
+//                } else {
+//                    binding.tvComplete.visibility = View.GONE
+//                }
+//            } else if (listActive.size < 3) {
+//                activeAdapter = ActiveTaskAdapter(
+//                    listActive.toMutableList(),
+//                    viewModel,
+//                    this,
+//                    childFragmentManager
+//                )
+//                passiveAdapter = PassiveTaskAdapter(
+//                    viewModel.getPassiveTasks().take(6 - listActive.size).toMutableList(),
+//                    viewModel,
+//                    this
+//                )
+//
+//                binding.tvShowPassiveTasks.visibility = View.VISIBLE
+//                binding.tvShowActiveTasks.visibility = View.GONE
+//                binding.tvComplete.visibility = View.VISIBLE
+//
+//            } else if (listPassive.isEmpty()) {
+//                activeAdapter =
+//                    ActiveTaskAdapter(
+//                        listActive.take(3).toMutableList(),
+//                        viewModel,
+//                        this,
+//                        childFragmentManager
+//                    )
+//                passiveAdapter = PassiveTaskAdapter(listPassive.toMutableList(), viewModel, this)
+//            } else {
+//
+//                if (listPassive.size == 3) {
+//                    activeAdapter =
+//                        ActiveTaskAdapter(
+//                            listActive.take(3).toMutableList(),
+//                            viewModel,
+//                            this,
+//                            childFragmentManager
+//                        )
+//                    passiveAdapter =
+//                        PassiveTaskAdapter(listPassive.toMutableList(), viewModel, this)
+//
+//                    binding.tvShowPassiveTasks.visibility = View.GONE
+//                    binding.tvShowActiveTasks.visibility = View.VISIBLE
+//                    binding.tvComplete.visibility = View.VISIBLE
+//                } else if (listActive.size == 3) {
+//                    activeAdapter = ActiveTaskAdapter(
+//                        listActive.toMutableList(),
+//                        viewModel,
+//                        this,
+//                        childFragmentManager
+//                    )
+//                    passiveAdapter =
+//                        PassiveTaskAdapter(listPassive.take(3).toMutableList(), viewModel, this)
+//
+//                    binding.tvShowPassiveTasks.visibility = View.VISIBLE
+//                    binding.tvShowActiveTasks.visibility = View.GONE
+//                    binding.tvComplete.visibility = View.VISIBLE
+//                } else {
+//                    activeAdapter =
+//                        ActiveTaskAdapter(
+//                            listActive.take(3).toMutableList(),
+//                            viewModel,
+//                            this,
+//                            childFragmentManager
+//                        )
+//                    passiveAdapter =
+//                        PassiveTaskAdapter(listPassive.take(3).toMutableList(), viewModel, this)
+//
+//                    binding.tvShowActiveTasks.visibility = View.GONE
+//                    binding.tvShowPassiveTasks.visibility = View.GONE
+//                    binding.tvComplete.visibility = View.VISIBLE
+//
+//                }
+//
+//            }
+//        }
+        activeAdapter = ActiveTaskAdapter(listActive.toMutableList(), viewModel, this, childFragmentManager)
+        passiveAdapter = PassiveTaskAdapter(listPassive.toMutableList(), viewModel, this)
 
-            binding.tvShowActiveTasks.visibility = View.GONE
-            binding.tvShowPassiveTasks.visibility = View.GONE
-            binding.tvComplete.visibility = View.GONE
-            binding.imgEmpty.visibility = View.VISIBLE
-            binding.imgEmpty.setAnimationFromUrl("https://assets2.lottiefiles.com/private_files/lf30_e3pteeho.json")
-        } else {
-            binding.imgEmpty.visibility = View.GONE
-        }
-
-
-        if (listPassive.size + listActive.size <= 6) {
-            activeAdapter =
-                ActiveTaskAdapter(listActive.toMutableList(), viewModel, this, childFragmentManager)
-            passiveAdapter = PassiveTaskAdapter(listPassive.toMutableList(), viewModel, this)
-
-            binding.tvShowActiveTasks.visibility = View.GONE
-            binding.tvShowPassiveTasks.visibility = View.GONE
-
-            if (listPassive.isNotEmpty()) {
-                binding.tvComplete.visibility = View.VISIBLE
-            } else {
-                binding.tvComplete.visibility = View.GONE
-            }
-        } else {
-            if (listPassive.size == listActive.size) {
-                activeAdapter =
-                    ActiveTaskAdapter(
-                        listActive.take(3).toMutableList(),
-                        viewModel,
-                        this,
-                        childFragmentManager
-                    )
-                passiveAdapter =
-                    PassiveTaskAdapter(listPassive.take(3).toMutableList(), viewModel, this)
-
-                binding.tvShowActiveTasks.visibility = View.VISIBLE
-                binding.tvShowPassiveTasks.visibility = View.VISIBLE
-            } else if (listPassive.size < 3) {
-                activeAdapter = ActiveTaskAdapter(
-                    viewModel.getActiveTasks().take(6 - listPassive.size).toMutableList(),
-                    viewModel,
-                    this, childFragmentManager
-                )
-                passiveAdapter = PassiveTaskAdapter(listPassive.toMutableList(), viewModel, this)
-
-                binding.tvShowPassiveTasks.visibility = View.GONE
-                binding.tvShowActiveTasks.visibility = View.VISIBLE
-
-
-                if (listPassive.isNotEmpty()) {
-                    binding.tvComplete.visibility = View.VISIBLE
-                } else {
-                    binding.tvComplete.visibility = View.GONE
-                }
-            } else if (listActive.size < 3) {
-                activeAdapter = ActiveTaskAdapter(
-                    listActive.toMutableList(),
-                    viewModel,
-                    this,
-                    childFragmentManager
-                )
-                passiveAdapter = PassiveTaskAdapter(
-                    viewModel.getPassiveTasks().take(6 - listActive.size).toMutableList(),
-                    viewModel,
-                    this
-                )
-
-                binding.tvShowPassiveTasks.visibility = View.VISIBLE
-                binding.tvShowActiveTasks.visibility = View.GONE
-                binding.tvComplete.visibility = View.VISIBLE
-
-            } else if (listPassive.isEmpty()) {
-                activeAdapter =
-                    ActiveTaskAdapter(
-                        listActive.take(3).toMutableList(),
-                        viewModel,
-                        this,
-                        childFragmentManager
-                    )
-                passiveAdapter = PassiveTaskAdapter(listPassive.toMutableList(), viewModel, this)
-            } else {
-
-                if (listPassive.size == 3) {
-                    activeAdapter =
-                        ActiveTaskAdapter(
-                            listActive.take(3).toMutableList(),
-                            viewModel,
-                            this,
-                            childFragmentManager
-                        )
-                    passiveAdapter =
-                        PassiveTaskAdapter(listPassive.toMutableList(), viewModel, this)
-
-                    binding.tvShowPassiveTasks.visibility = View.GONE
-                    binding.tvShowActiveTasks.visibility = View.VISIBLE
-                    binding.tvComplete.visibility = View.VISIBLE
-                } else if (listActive.size == 3) {
-                    activeAdapter = ActiveTaskAdapter(
-                        listActive.toMutableList(),
-                        viewModel,
-                        this,
-                        childFragmentManager
-                    )
-                    passiveAdapter =
-                        PassiveTaskAdapter(listPassive.take(3).toMutableList(), viewModel, this)
-
-                    binding.tvShowPassiveTasks.visibility = View.VISIBLE
-                    binding.tvShowActiveTasks.visibility = View.GONE
-                    binding.tvComplete.visibility = View.VISIBLE
-                } else {
-                    activeAdapter =
-                        ActiveTaskAdapter(
-                            listActive.take(3).toMutableList(),
-                            viewModel,
-                            this,
-                            childFragmentManager
-                        )
-                    passiveAdapter =
-                        PassiveTaskAdapter(listPassive.take(3).toMutableList(), viewModel, this)
-
-                    binding.tvShowActiveTasks.visibility = View.GONE
-                    binding.tvShowPassiveTasks.visibility = View.GONE
-                    binding.tvComplete.visibility = View.VISIBLE
-
-                }
-
-            }
-        }
         binding.rvActiveTasks.adapter = activeAdapter
         binding.rvPassiveTasks.adapter = passiveAdapter
+
+        updateLists()
 
         binding.tvShowActiveTasks.setOnClickListener {
             val bundle = Bundle()
@@ -203,99 +209,158 @@ class MainFragment : Fragment(), TaskChangeListener {
 
     }
 
-    override fun onClick(item: Task) {
+
+    private fun updateLists() {
         val listActive = viewModel.getActiveTasks()
         val listPassive = viewModel.getPassiveTasks()
-        with(binding) {
-            if (listPassive.size + listActive.size == 0) {
+        with(binding)
+        {
+            if (listActive.isEmpty() && listPassive.isEmpty()) {
+                tvComplete.isVisible = false
+                tvShowActiveTasks.isVisible = false
+                tvShowPassiveTasks.isVisible = false
+                imgEmpty.isVisible = true
+                imgEmpty.setAnimationFromUrl("https://assets2.lottiefiles.com/private_files/lf30_e3pteeho.json")
 
-                binding.tvShowActiveTasks.visibility = View.GONE
-                binding.tvShowPassiveTasks.visibility = View.GONE
-                binding.tvComplete.visibility = View.GONE
-                binding.imgEmpty.visibility = View.VISIBLE
-                binding.imgEmpty.setAnimationFromUrl("https://assets2.lottiefiles.com/private_files/lf30_e3pteeho.json")
+                activeAdapter.updateList(listActive)
+                passiveAdapter.updateList(listPassive)
             } else {
-                binding.imgEmpty.visibility = View.GONE
-
-            }
-
-
-            if (listPassive.size + listActive.size <= 6) {
-                activeAdapter.updateList(viewModel.getActiveTasks())
-                passiveAdapter.updateList(viewModel.getPassiveTasks())
-
-                tvShowActiveTasks.visibility = View.GONE
-                tvShowPassiveTasks.visibility = View.GONE
-
-                if (listPassive.isNotEmpty()) {
-                    tvComplete.visibility = View.VISIBLE
-                } else {
-                    tvComplete.visibility = View.GONE
+                if (listActive.size <= 3) {
+                    tvShowActiveTasks.isVisible = false
+                    activeAdapter.updateList(listActive)
                 }
-            } else {
-                if (listPassive.size == listActive.size) {
-                    activeAdapter.updateList(viewModel.getActiveTasks().take(3))
-                    passiveAdapter.updateList(viewModel.getPassiveTasks().take(3))
-
-                    tvShowActiveTasks.visibility = View.VISIBLE
-                    tvShowPassiveTasks.visibility = View.VISIBLE
-                } else if (listPassive.size < 3) {
-                    activeAdapter.updateList(viewModel.getActiveTasks().take(6 - listPassive.size))
-                    passiveAdapter.updateList(viewModel.getPassiveTasks())
-
-                    tvShowPassiveTasks.visibility = View.GONE
-                    tvShowActiveTasks.visibility = View.VISIBLE
-
-
-                    if (listPassive.isNotEmpty()) {
-                        tvComplete.visibility = View.VISIBLE
-                    } else {
-                        tvComplete.visibility = View.GONE
-                    }
-                } else if (listActive.size < 3) {
-                    activeAdapter.updateList(viewModel.getActiveTasks())
-                    passiveAdapter.updateList(viewModel.getPassiveTasks().take(6 - listActive.size))
-
-                    tvShowPassiveTasks.visibility = View.VISIBLE
-                    tvShowActiveTasks.visibility = View.GONE
-                    tvComplete.visibility = View.VISIBLE
-
+                if (listPassive.size <= 3 && listPassive.isNotEmpty()) {
+                    tvComplete.isVisible = true
+                    tvShowPassiveTasks.isVisible = false
+                    passiveAdapter.updateList(listPassive)
                 } else if (listPassive.isEmpty()) {
-                    activeAdapter.updateList(viewModel.getActiveTasks().take(3))
-                    passiveAdapter.updateList(viewModel.getPassiveTasks())
-                } else {
-
-                    if (listPassive.size == 3) {
-                        activeAdapter.updateList(viewModel.getActiveTasks().take(3))
-                        passiveAdapter.updateList(viewModel.getPassiveTasks())
-
-                        tvShowPassiveTasks.visibility = View.GONE
-                        tvShowActiveTasks.visibility = View.VISIBLE
-                        tvComplete.visibility = View.VISIBLE
-                    } else if (listActive.size == 3) {
-                        activeAdapter.updateList(viewModel.getActiveTasks())
-                        passiveAdapter.updateList(viewModel.getPassiveTasks().take(3))
-
-                        tvShowPassiveTasks.visibility = View.VISIBLE
-                        tvShowActiveTasks.visibility = View.GONE
-                        tvComplete.visibility = View.VISIBLE
-                    } else {
-                        activeAdapter.updateList(viewModel.getActiveTasks().take(3))
-                        passiveAdapter.updateList(viewModel.getPassiveTasks().take(3))
-
-                        tvShowActiveTasks.visibility = View.GONE
-                        tvShowPassiveTasks.visibility = View.GONE
-                        tvComplete.visibility = View.VISIBLE
-
-                    }
-
+                    tvComplete.isVisible = false
+                    tvShowPassiveTasks.isVisible = false
+                    passiveAdapter.updateList(listPassive)
                 }
+                if (listActive.size > 3) {
+                    if (listPassive.size <= 3) {
+                        activeAdapter.updateList(listActive.take(6 - listPassive.size))
+                        tvShowActiveTasks.isVisible = listActive.size > 6 - listPassive.size
+                    } else {
+                        activeAdapter.updateList(listActive.take(3))
+                        tvShowActiveTasks.isVisible = true
+                    }
+                }
+                if (listPassive.size > 3) {
+                    if (listActive.size <= 3) {
+                        passiveAdapter.updateList(listPassive.take(6 - listActive.size))
+                        tvShowPassiveTasks.isVisible = listPassive.size > 6 - listActive.size
+                    } else {
+                        passiveAdapter.updateList(listPassive.take(3))
+                        tvShowPassiveTasks.isVisible = true
+                    }
+                }
+
             }
 
         }
 
-
     }
+
+
+    override fun onClick(item: Task) {
+        updateLists()
+    }
+
+//    override fun onClick(item: Task) {
+//        val listActive = viewModel.getActiveTasks()
+//        val listPassive = viewModel.getPassiveTasks()
+//        with(binding) {
+//            if (listPassive.size + listActive.size == 0) {
+//
+//                binding.tvShowActiveTasks.visibility = View.GONE
+//                binding.tvShowPassiveTasks.visibility = View.GONE
+//                binding.tvComplete.visibility = View.GONE
+//                binding.imgEmpty.visibility = View.VISIBLE
+//                binding.imgEmpty.setAnimationFromUrl("https://assets2.lottiefiles.com/private_files/lf30_e3pteeho.json")
+//            } else {
+//                binding.imgEmpty.visibility = View.GONE
+//
+//            }
+//
+//
+//            if (listPassive.size + listActive.size <= 6) {
+//                activeAdapter.updateList(viewModel.getActiveTasks())
+//                passiveAdapter.updateList(viewModel.getPassiveTasks())
+//
+//                tvShowActiveTasks.visibility = View.GONE
+//                tvShowPassiveTasks.visibility = View.GONE
+//
+//                if (listPassive.isNotEmpty()) {
+//                    tvComplete.visibility = View.VISIBLE
+//                } else {
+//                    tvComplete.visibility = View.GONE
+//                }
+//            } else {
+//                if (listPassive.size == listActive.size) {
+//                    activeAdapter.updateList(viewModel.getActiveTasks().take(3))
+//                    passiveAdapter.updateList(viewModel.getPassiveTasks().take(3))
+//
+//                    tvShowActiveTasks.visibility = View.VISIBLE
+//                    tvShowPassiveTasks.visibility = View.VISIBLE
+//                } else if (listPassive.size < 3) {
+//                    activeAdapter.updateList(viewModel.getActiveTasks().take(6 - listPassive.size))
+//                    passiveAdapter.updateList(viewModel.getPassiveTasks())
+//
+//                    tvShowPassiveTasks.visibility = View.GONE
+//                    tvShowActiveTasks.visibility = View.VISIBLE
+//
+//
+//                    if (listPassive.isNotEmpty()) {
+//                        tvComplete.visibility = View.VISIBLE
+//                    } else {
+//                        tvComplete.visibility = View.GONE
+//                    }
+//                } else if (listActive.size < 3) {
+//                    activeAdapter.updateList(viewModel.getActiveTasks())
+//                    passiveAdapter.updateList(viewModel.getPassiveTasks().take(6 - listActive.size))
+//
+//                    tvShowPassiveTasks.visibility = View.VISIBLE
+//                    tvShowActiveTasks.visibility = View.GONE
+//                    tvComplete.visibility = View.VISIBLE
+//
+//                } else if (listPassive.isEmpty()) {
+//                    activeAdapter.updateList(viewModel.getActiveTasks().take(3))
+//                    passiveAdapter.updateList(viewModel.getPassiveTasks())
+//                } else {
+//
+//                    if (listPassive.size == 3) {
+//                        activeAdapter.updateList(viewModel.getActiveTasks().take(3))
+//                        passiveAdapter.updateList(viewModel.getPassiveTasks())
+//
+//                        tvShowPassiveTasks.visibility = View.GONE
+//                        tvShowActiveTasks.visibility = View.VISIBLE
+//                        tvComplete.visibility = View.VISIBLE
+//                    } else if (listActive.size == 3) {
+//                        activeAdapter.updateList(viewModel.getActiveTasks())
+//                        passiveAdapter.updateList(viewModel.getPassiveTasks().take(3))
+//
+//                        tvShowPassiveTasks.visibility = View.VISIBLE
+//                        tvShowActiveTasks.visibility = View.GONE
+//                        tvComplete.visibility = View.VISIBLE
+//                    } else {
+//                        activeAdapter.updateList(viewModel.getActiveTasks().take(3))
+//                        passiveAdapter.updateList(viewModel.getPassiveTasks().take(3))
+//
+//                        tvShowActiveTasks.visibility = View.GONE
+//                        tvShowPassiveTasks.visibility = View.GONE
+//                        tvComplete.visibility = View.VISIBLE
+//
+//                    }
+//
+//                }
+//            }
+//
+//        }
+//
+//
+//    }
 
 
 }
