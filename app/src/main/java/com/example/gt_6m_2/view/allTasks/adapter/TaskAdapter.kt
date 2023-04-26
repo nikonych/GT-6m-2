@@ -38,8 +38,17 @@ class TaskAdapter(
     }
 
     fun deleteTask(position: Int) {
-        list.removeAt(position)
-        notifyItemRemoved(position)
+        if (list.size == 1) {
+            list.clear()
+        } else {
+            try {
+                list.removeAt(position)
+                notifyItemRemoved(position)
+
+            } catch (e: Exception) {
+
+            }
+        }
     }
 
     inner class TaskViewHolder(private var binding: ItemFullTaskBinding) :
@@ -81,7 +90,6 @@ class TaskAdapter(
             }
 
             binding.btnDelete.setOnClickListener {
-                viewModel.deleteTask(task)
                 clickListener.onClick(task, position)
             }
 

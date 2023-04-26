@@ -51,6 +51,7 @@ class AllTasksFragment : Fragment(), TaskChangeListener {
     }
 
     override fun onClick(item: Task, position: Int) {
+        viewModel.deleteTask(task = item)
         adapter.deleteTask(position)
     }
 

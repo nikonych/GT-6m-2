@@ -48,6 +48,9 @@ class ActiveTaskAdapter(
     }
 
     fun deleteTask(position: Int){
+        if (list.size == 1){
+            list.clear()
+        }
         try {
 
             list.removeAt(position)
